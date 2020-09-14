@@ -46,11 +46,19 @@ namespace Aproksymacja_funkcjami_sklejanymi
             double wartosc2 = xi[0]*sp.BaseSpline(0 - h, h, Math.PI / 2) + xi[1] * sp.BaseSpline(0, h, Math.PI / 2) + xi[2] * sp.BaseSpline(0 + h, h, Math.PI / 2) + xi[3] * sp.BaseSpline(0 + 2*h, h, Math.PI / 2) + xi[4] * sp.BaseSpline(0 + 3*h, h, Math.PI / 2);
             double wartosc3 = Math.Sin(0);
             double wartosc4 = xi[0] * sp.BaseSpline(0 - h, h, 0) + xi[1] * sp.BaseSpline(0, h, 0) + xi[2] * sp.BaseSpline(0 + h, h, 0) + xi[3] * sp.BaseSpline(0 + 2 * h, h, 0) + xi[4] * sp.BaseSpline(0 + 3 * h, h, 0);
+            double wartosc5 = Math.Sin(Math.PI / 6);
+            double wartosc6 = xi[0] * sp.BaseSpline(0 - h, h, Math.PI / 6) + xi[1] * sp.BaseSpline(0, h, Math.PI / 6) + xi[2] * sp.BaseSpline(0 + h, h, Math.PI / 6) + xi[3] * sp.BaseSpline(0 + 2 * h, h, Math.PI / 6) + xi[4] * sp.BaseSpline(0 + 3 * h, h, Math.PI / 6);
+            double wartosc7 = Math.Sin(Math.PI / 4);
+            double wartosc8 = xi[0] * sp.BaseSpline(0 - h, h, Math.PI / 4) + xi[1] * sp.BaseSpline(0, h, Math.PI / 4) + xi[2] * sp.BaseSpline(0 + h, h, Math.PI / 4) + xi[3] * sp.BaseSpline(0 + 2 * h, h, Math.PI / 4) + xi[4] * sp.BaseSpline(0 + 3 * h, h, Math.PI / 4);
             Console.WriteLine("Porównanie wartości");
             Console.WriteLine(wartosc1);
             Console.WriteLine(wartosc2);
             Console.WriteLine(wartosc3);
             Console.WriteLine(wartosc4);
+            Console.WriteLine(wartosc5);
+            Console.WriteLine(wartosc6);
+            Console.WriteLine(wartosc7);
+            Console.WriteLine(wartosc8);
 
 
 
