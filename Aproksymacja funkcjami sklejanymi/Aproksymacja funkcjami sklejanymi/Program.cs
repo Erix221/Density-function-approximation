@@ -11,7 +11,6 @@ namespace Aproksymacja_funkcjami_sklejanymi
         static void Main(string[] args)
         {
             SplineApproximation sp = new SplineApproximation();
-            double h = 1;
             double baseptk = 0;
             double x = 1.1;
             int n = 6;
@@ -26,6 +25,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             dic.Add(0.139, Math.Sin(0.139));
             //Console.WriteLine(sp.BaseSpline(baseptk,h,x));
             double[] xi = sp.Approximate(0,2*Math.PI,n,dic);
+            double h = (2 * Math.PI - 0) / n;
             //   for (int i = 0; i < n+3; i++)
             //  {
             //    for (int j = 0; j < n+3; j++)
