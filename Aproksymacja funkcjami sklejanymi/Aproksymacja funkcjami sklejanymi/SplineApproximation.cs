@@ -168,7 +168,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
         }
 
 
-        private double FunctionValue(double[] result, double x)
+        public double FunctionValue(double[] result, double x)
         {
             double value = 0;
             for (int i = 0; i < result.Length; i++)
@@ -176,7 +176,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             return value;
         }
 
-        private double FunctionValue1(double[] result, double x)
+        public double FunctionValue1(double[] result, double x)
         {
             double value = 0;
             for (int i = 0; i < result.Length; i++)
@@ -184,7 +184,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             return value;
         }
 
-        public double[] GetPointsforTest() // losuje x w konkretnym przedziale do testu
+        public double[] GetPointsforTest() 
         {
             Random r = new Random();
             double range = 2*Math.PI;
@@ -196,50 +196,6 @@ namespace Aproksymacja_funkcjami_sklejanymi
             }
             return x;
         }
-        public double[,] TestSplineSinus(double[] x)
-        {
-            double[] y = new double[1000000];
-            for (int i = 0; i < 1000000; i++) // wyliczam wartości Sinusa
-            {
-                y[i] = Math.Sin(x[i]);
-            }
-            SplineApproximation sp = new SplineApproximation(0, 2 * Math.PI, 6, x, y); // zmieniac trzecią wartość, jest to numer przedzialów
-            double h = (sp.EndOfInterval - sp.StartOfInterval) / sp.NumberOfIntervals;
-            var sw1 = Stopwatch.StartNew();
-            double res1 = 0;
-            double[] result = sp.Approximate();
-            Console.WriteLine("Old: " + sw1.ElapsedMilliseconds + " ms:  " + res1);
-            double[,] sinsprox = new double[1000000, 2];
-            for (int i = 0; i < 1000000; i++)
-            {
-                sinsprox[i, 0] = sp.FunctionValue(result, x[i]); // szybsze rozwiazanie
-                sinsprox[i, 1] = y[i];
-            }
-            return sinsprox;
-        }
-
-        public double[,] TestSplineSinus1(double[] x)
-        {
-            double[] y = new double[1000000];
-            for (int i = 0; i < 1000000; i++) // wyliczam wartości Sinusa
-            {
-                y[i] = Math.Sin(x[i]);
-            }
-            SplineApproximation sp = new SplineApproximation(0, 2 * Math.PI, 6, x, y); // zmieniac trzecią wartość, jest to numer przedzialów
-            double h = (sp.EndOfInterval - sp.StartOfInterval) / sp.NumberOfIntervals;
-            var sw1 = Stopwatch.StartNew();
-            double res1 = 0;
-            double[] result1 = sp.Approximate1();
-            Console.WriteLine("New: " + sw1.ElapsedMilliseconds + " ms:  " + res1);
-            double[,] sinsprox = new double[1000000, 2];
-            for (int i = 0; i < 1000000; i++)
-            {
-                sinsprox[i, 0] = sp.FunctionValue1(result1, x[i]); // szybsze rozwiazanie
-                sinsprox[i, 1] = y[i];
-            }
-            return sinsprox;
-        }
-
 
     }
 
