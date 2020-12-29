@@ -27,6 +27,37 @@ namespace Aproksymacja_funkcjami_sklejanymi
             X = x;
         }
 
+        private void Getlowest(double current, double[] points, ref int lIndex)
+        {
+            for (int i = lIndex; i < points.Length; i++)
+            {
+                if (points[i] >= current - Neighbourhood && points[i] <= current + Neighbourhood)
+                {
+                    lIndex = i;
+                    break;
+                }
+                else
+                    lIndex = 0;
+            }
+        }
+
+        private void Gethighest(double current, double[] points, ref int hIndex)
+        {
+            for (int i = hIndex; i < points.Length - 1; i++)
+            {
+                if (points[i] <= current + Neighbourhood && points[i] >= current - Neighbourhood)
+                {
+                    if (!(points[i + 1] <= current + Neighbourhood && points[i] >= current - Neighbourhood))
+                    {
+                        hIndex = i;
+                        break;
+                    }
+                    else
+                        hIndex = i + 1;
+                }
+            }
+        }
+
   public double[][] CalculateBinary()
         {
             double current = StartOfInterval;
@@ -66,37 +97,87 @@ namespace Aproksymacja_funkcjami_sklejanymi
             List<double> x = new List<double>();
             List<double> y = new List<double>();
             double[] points = X;
-            double current = StartOfInterval, count;
+            double current = StartOfInterval, count = 0;
             int lIndex = 0, hIndex = 0;
             double[][] result = new double[2][];
             Array.Sort(points);
-            while(current <= EndOfInterval)
+            while (current <= EndOfInterval)
             {
-                for (int i = lIndex; i < points.Length; i++)
+                if (current - Neighbourhood <= points[points.Length - 1] && points[0] <= current + Neighbourhood)
                 {
-                    if (points[i] >= current - Neighbourhood)
+
+                    Getlowest(current, points, ref lIndex);
+                    Gethighest(current, points, ref hIndex);
+                    if (lIndex == hIndex)
                     {
-                        lIndex = i;
-                        break;
-                    }             
-                }
-                for (int i = hIndex; i < points.Length; i++)
-                {
-                    if (points[i] <= current - Neighbourhood)
-                    {
-                        hIndex = i;
-                        break;
+                        if (!(points[lIndex] <= current + Neighbourhood && points[lIndex] >= current - Neighbourhood))
+                            count = 0;
+                        else
+                            count = 1;
                     }
+                    else
+                        count = hIndex - lIndex + 1;
+                    x.Add(current);
+                    y.Add(count);
                 }
-                count = hIndex - lIndex + 1;
-                x.Add(current);
-                y.Add(count);
+                else
+                {
+                    x.Add(current);
+                    y.Add(0);
+                }
+            Console.WriteLine("h: " + hIndex + " l: " + lIndex);
                 current += StepSize;
 
-            }    
+            }
             result[0] = x.ToArray();
             result[1] = y.ToArray();
             return result;
         }
+
+        //public double[][] CalculateSmart()
+        //{
+        //    List<double> x = new List<double>();
+        //    List<double> y = new List<double>();
+        //    double[] points = X;
+        //    double current, count = 0;
+        //    int lIndex = 0, hIndex = 0;
+        //    double[][] result = new double[2][];
+        //    Array.Sort(points);
+        //    current = points[0];
+        //    while (current <= EndOfInterval)
+        //    {
+        //        for (int i = lIndex; i < points.Length; i++)
+        //        {
+        //            if (points[i] >= current - Neighbourhood)
+        //            {
+        //                lIndex = i;
+        //                break;
+        //            }
+        //        }
+        //        for (int i = hIndex; i < points.Length; i++)
+        //        {
+        //            if (points[i] <= current + Neighbourhood)
+        //            {
+        //                if (i + 1 < points.Length)
+        //                    hIndex = i;
+        //                break;
+        //            }
+        //        }
+        //        if (lIndex == hIndex)
+        //        {
+        //            if (!(points[lIndex] >= current - Neighbourhood) && !(points[hIndex] <= current + Neighbourhood))
+        //                count = 0;
+        //        }
+        //        else
+        //            count = hIndex - lIndex + 1;
+        //        x.Add(current);
+        //        y.Add(count);
+        //        current += StepSize;
+
+        //    }
+        //    result[0] = x.ToArray();
+        //    result[1] = y.ToArray();
+        //    return result;
+        //}
     }
 }
