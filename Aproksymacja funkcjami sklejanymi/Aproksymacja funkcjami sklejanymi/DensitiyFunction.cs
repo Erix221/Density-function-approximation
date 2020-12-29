@@ -35,7 +35,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             double[] points = X;
             double[][] result = new double[2][];
             Array.Sort(points);
-            double count = GFG.CountInRange(points, points.Length, StartOfInterval- Neighbourhood, StartOfInterval+ Neighbourhood);
+            double count = BinarySearch.CountInRange(points, points.Length, StartOfInterval- Neighbourhood, StartOfInterval+ Neighbourhood);
             double newcount;
             x.Add(StartOfInterval);
             y.Add(count);
@@ -43,7 +43,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             int counter = 0;
             while (current <= EndOfInterval)
             {
-                newcount = GFG.CountInRange(points, points.Length, current - Neighbourhood, current + Neighbourhood);
+                newcount = BinarySearch.CountInRange(points, points.Length, current - Neighbourhood, current + Neighbourhood);
                 if (newcount != count || counter == 3)
                 {
                     counter = 0;
