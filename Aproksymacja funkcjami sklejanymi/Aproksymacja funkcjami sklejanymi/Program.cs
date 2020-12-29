@@ -30,23 +30,29 @@ namespace Aproksymacja_funkcjami_sklejanymi
 
 
 
-            /*
+            
             DensitiyFunction df = new DensitiyFunction();
-          double[][] result = df.Test();
-            SplineApproximation sp = new SplineApproximation(4,6,4,result[0],result[1]);
+            Tests t = new Tests();
+            double[][] result = t.DensityFunctionTest();
+            double[][] result1 = t.DensityFunctionTest1();
+            SplineApproximation sp = new SplineApproximation(4,7,4,result[0],result[1]);
             double[] wsp = sp.Approximate1();
             Console.WriteLine("Aproksymacja");
             double ptk = 4;
-            for(int i=0; i<150; i++)
-            {
-                Console.WriteLine("Wartosc funkcji w " + ptk + " to: " + sp.FunctionValue(wsp,ptk)/ result[1].Length);
-                ptk += 0.1;
-            }
+            //for(int i=0; i<150; i++)
+            //{
+            //    Console.WriteLine("Wartosc funkcji w " + ptk + " to: " + sp.FunctionValue(wsp,ptk)/ result[1].Length);
+            //    ptk += 0.1;
+            //}
             for (int i = 0; i < result[1].Length; i++)
             {
-                Console.WriteLine("Prawdziwa wartosc "  + result[1][i]/ result[1].Length);
+                Console.WriteLine("Prawdziwa wartosc "  + result[1][i] + "w ptk: " + result[0][i]);
             }
-            // funkcjonalność programu: punkty*/
+            for (int i = 0; i < result1[1].Length; i++)
+            {
+                Console.WriteLine("Prawdziwa wartosc drugi test " + result1[1][i] + "w ptk: " + result1[0][i]);
+            }
+            // funkcjonalność programu: punkty
 
         }
     }

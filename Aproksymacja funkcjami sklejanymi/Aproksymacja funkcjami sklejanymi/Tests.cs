@@ -112,9 +112,10 @@ namespace Aproksymacja_funkcjami_sklejanymi
             double range = 5;
             double rDouble = r.NextDouble() * range; //for doubles
             double[][] x = irisdataset();
-            DensitiyFunction df = new DensitiyFunction(4, 6, 0.2, 0.1, x[0]);
+            DensitiyFunction df = new DensitiyFunction(4, 7, 0.2, 0.1, x[0]);
             double[][] result = df.CalculateBinary();
             return result;
+            //
         }
 
         public double[][] DensityFunctionTest1()
@@ -123,9 +124,10 @@ namespace Aproksymacja_funkcjami_sklejanymi
             double range = 5;
             double rDouble = r.NextDouble() * range; //for doubles
             double[][] x = irisdataset();
-            DensitiyFunction df = new DensitiyFunction(4, 6, 0.2, 0.1, x[0]);
+            DensitiyFunction df = new DensitiyFunction(4, 7, 0.2, 0.1, x[0]);
             double[][] result = df.CalculateSmart();
             return result;
+            //
         }
     }
     }
