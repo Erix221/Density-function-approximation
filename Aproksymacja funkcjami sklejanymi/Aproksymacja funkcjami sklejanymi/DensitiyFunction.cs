@@ -27,7 +27,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             X = x;
         }
 
-  public double[][] Calculate()
+  public double[][] CalculateBinary()
         {
             double current = StartOfInterval;
             List<double> x = new List<double>();
@@ -40,22 +40,63 @@ namespace Aproksymacja_funkcjami_sklejanymi
             x.Add(StartOfInterval);
             y.Add(count);
             current += StepSize;
-            while (current<=EndOfInterval)
+            int counter = 0;
+            while (current <= EndOfInterval)
             {
-                newcount = GFG.CountInRange(points, points.Length, current- Neighbourhood, current + Neighbourhood);
-                if(newcount != count)
+                newcount = GFG.CountInRange(points, points.Length, current - Neighbourhood, current + Neighbourhood);
+                if (newcount != count || counter == 3)
                 {
+                    counter = 0;
                     x.Add(current);
                     y.Add(newcount);
                     count = newcount;
                 }
+                else
+                    counter += 1;
                 current += StepSize;
 
             }
             result[0] = x.ToArray();
             result[1] = y.ToArray();
             return result;
+        }
 
+        public double[][] CalculateSmart()
+        {
+            List<double> x = new List<double>();
+            List<double> y = new List<double>();
+            double[] points = X;
+            double current = StartOfInterval, count;
+            int lIndex = 0, hIndex = 0;
+            double[][] result = new double[2][];
+            Array.Sort(points);
+            while(current <= EndOfInterval)
+            {
+                for (int i = lIndex; i < points.Length; i++)
+                {
+                    if (points[i] >= current - Neighbourhood)
+                    {
+                        lIndex = i;
+                        break;
+                    }             
+                }
+                for (int i = hIndex; i < points.Length; i++)
+                {
+                    if (points[i] <= current - Neighbourhood)
+                    {
+                        hIndex = i;
+                        break;
+                    }
+                }
+                count = hIndex - lIndex + 1;
+                x.Add(current);
+                y.Add(count);
+                current += StepSize;
+
+            }    
+            result[0] = x.ToArray();
+            result[1] = y.ToArray();
+            return result;
         }
     }
 }
