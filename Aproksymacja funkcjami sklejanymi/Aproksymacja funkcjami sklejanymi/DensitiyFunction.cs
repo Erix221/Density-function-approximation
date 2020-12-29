@@ -133,51 +133,5 @@ namespace Aproksymacja_funkcjami_sklejanymi
             result[1] = y.ToArray();
             return result;
         }
-
-        //public double[][] CalculateSmart()
-        //{
-        //    List<double> x = new List<double>();
-        //    List<double> y = new List<double>();
-        //    double[] points = X;
-        //    double current, count = 0;
-        //    int lIndex = 0, hIndex = 0;
-        //    double[][] result = new double[2][];
-        //    Array.Sort(points);
-        //    current = points[0];
-        //    while (current <= EndOfInterval)
-        //    {
-        //        for (int i = lIndex; i < points.Length; i++)
-        //        {
-        //            if (points[i] >= current - Neighbourhood)
-        //            {
-        //                lIndex = i;
-        //                break;
-        //            }
-        //        }
-        //        for (int i = hIndex; i < points.Length; i++)
-        //        {
-        //            if (points[i] <= current + Neighbourhood)
-        //            {
-        //                if (i + 1 < points.Length)
-        //                    hIndex = i;
-        //                break;
-        //            }
-        //        }
-        //        if (lIndex == hIndex)
-        //        {
-        //            if (!(points[lIndex] >= current - Neighbourhood) && !(points[hIndex] <= current + Neighbourhood))
-        //                count = 0;
-        //        }
-        //        else
-        //            count = hIndex - lIndex + 1;
-        //        x.Add(current);
-        //        y.Add(count);
-        //        current += StepSize;
-
-        //    }
-        //    result[0] = x.ToArray();
-        //    result[1] = y.ToArray();
-        //    return result;
-        //}
     }
 }
