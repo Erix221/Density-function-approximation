@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aproksymacja funkcjami sklejanymi", "Aproksymacja funkcjami sklejanymi\Aproksymacja funkcjami sklejanymi.csproj", "{98431CAA-7139-42B6-8A78-772F48A3A4F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spline Approximation dll", "Aproksymacja funkcjami sklejanymi\Spline Approximation dll.csproj", "{98431CAA-7139-42B6-8A78-772F48A3A4F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

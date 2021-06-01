@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
-namespace Aproksymacja_funkcjami_sklejanymi
+namespace Spline_Approximation_dll
 {
-    public class DensitiyFunction
+    public class DensityFunction
     {
         public double StartOfInterval { get; set; }
         public double EndOfInterval { get; set; }
@@ -13,12 +11,12 @@ namespace Aproksymacja_funkcjami_sklejanymi
         public double StepSize { get; set; }
         public double[] X { get; set; }
 
-        public DensitiyFunction()
+        public DensityFunction()
         {
 
         }
 
-        public DensitiyFunction(double a, double b, double prze, double ptk, double[] x)
+        public DensityFunction(double a, double b, double prze, double ptk, double[] x)
         {
             StartOfInterval = a;
             EndOfInterval = b;
@@ -58,7 +56,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             }
         }
 
-  public double[][] CalculateBinary()
+        public double[][] CalculateDensityFunctionPointsBinary()
         {
             double current = StartOfInterval;
             List<double> x = new List<double>();
@@ -66,7 +64,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             double[] points = X;
             double[][] result = new double[2][];
             Array.Sort(points);
-            double count = BinarySearch.CountInRange(points, points.Length, StartOfInterval- Neighbourhood, StartOfInterval+ Neighbourhood);
+            double count = BinarySearch.CountInRange(points, points.Length, StartOfInterval - Neighbourhood, StartOfInterval + Neighbourhood);
             double newcount;
             x.Add(StartOfInterval);
             y.Add(count);
@@ -92,7 +90,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             return result;
         }
 
-        public double[][] CalculateSmart()
+        public double[][] CalculateDensityFunctionPoints()
         {
             List<double> x = new List<double>();
             List<double> y = new List<double>();
@@ -103,9 +101,8 @@ namespace Aproksymacja_funkcjami_sklejanymi
             Array.Sort(points);
             while (current <= EndOfInterval)
             {
-                if (current - Neighbourhood <= points[points.Length - 1] && points[0] <= current + Neighbourhood)
+                if (current - Neighbourhood <= points[points.Length - 1] && points[0] <= current + Neighbourhood) 
                 {
-
                     Getlowest(current, points, ref lIndex);
                     Gethighest(current, points, ref hIndex);
                     if (lIndex == hIndex)
@@ -125,7 +122,6 @@ namespace Aproksymacja_funkcjami_sklejanymi
                     x.Add(current);
                     y.Add(0);
                 }
-            Console.WriteLine("h: " + hIndex + " l: " + lIndex);
                 current += StepSize;
 
             }

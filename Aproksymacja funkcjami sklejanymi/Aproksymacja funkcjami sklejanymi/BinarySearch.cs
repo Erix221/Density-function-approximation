@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Aproksymacja_funkcjami_sklejanymi
+﻿namespace Spline_Approximation_dll
 {
     class BinarySearch
     {
@@ -44,7 +40,7 @@ namespace Aproksymacja_funkcjami_sklejanymi
             int count = UpperIndex(arr, n, y) - LowerIndex(arr, n, x) + 1;
             return count;
         }
-    
+
 
     }
 }
