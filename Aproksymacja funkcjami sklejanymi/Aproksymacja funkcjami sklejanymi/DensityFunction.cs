@@ -56,40 +56,7 @@ namespace Spline_Approximation_dll
             }
         }
 
-        public double[][] CalculateDensityFunctionPointsBinary()
-        {
-            double current = StartOfInterval;
-            List<double> x = new List<double>();
-            List<double> y = new List<double>();
-            double[] points = X;
-            double[][] result = new double[2][];
-            Array.Sort(points);
-            double count = BinarySearch.CountInRange(points, points.Length, StartOfInterval - Neighbourhood, StartOfInterval + Neighbourhood);
-            double newcount;
-            x.Add(StartOfInterval);
-            y.Add(count);
-            current += StepSize;
-            int counter = 0;
-            while (current <= EndOfInterval)
-            {
-                newcount = BinarySearch.CountInRange(points, points.Length, current - Neighbourhood, current + Neighbourhood);
-                if (newcount != count || counter == 3)
-                {
-                    counter = 0;
-                    x.Add(current);
-                    y.Add(newcount);
-                    count = newcount;
-                }
-                else
-                    counter += 1;
-                current += StepSize;
-
-            }
-            result[0] = x.ToArray();
-            result[1] = y.ToArray();
-            return result;
-        }
-
+  
         public double[][] CalculateDensityFunctionPoints()
         {
             List<double> x = new List<double>();
@@ -122,11 +89,14 @@ namespace Spline_Approximation_dll
                     x.Add(current);
                     y.Add(0);
                 }
-                current += StepSize;
+                current = Math.Round(current + StepSize,15);
 
             }
             result[0] = x.ToArray();
             result[1] = y.ToArray();
+            for (int i = 0; i < result[1].Length; i++)
+                result[1][i] /= X.Length; 
+
             return result;
         }
     }
